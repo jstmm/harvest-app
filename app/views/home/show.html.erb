@@ -1,0 +1,41 @@
+<h1>Harvest App</h1>
+
+<p>Hi <%= @current_user[:first_name] %> <%= @current_user[:last_name] %> !</p>
+
+<%= link_to "Add entries", new_time_entry_path %><br>
+<%= link_to "Sign Out (#{@current_user[:email]})" , sign_out_path %>
+
+<% if flash[:notice].present? %>
+  <hr>
+
+  <h3>Entries added:</h3>
+  <% flash[:notice].each do |msg| -%>
+    <%= content_tag :div, msg %>
+  <% end -%>
+<% end -%>
+
+<hr>
+
+<h3>Last Entries:</h3>
+<table class="striped">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Nb. of Hours</th>
+      <th scope="col">Client</th>
+      <th scope="col">Project</th>
+      <th scope="col">Task</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @entries.each do |e| %>
+      <tr>
+        <td><%= e["spent_date"] %></td>
+        <td><%= e["hours"] %></td>
+        <td><%= e["client"]["name"] %></td>
+        <td><%= e["project"]["name"] %></td>
+        <td><%= e["task"]["name"] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
