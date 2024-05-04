@@ -1,6 +1,6 @@
 # Harvest App
 
-App to create time entries in bulk on Harvest.
+App to create time entries in bulk in Harvest
 
 ## Installation
 
