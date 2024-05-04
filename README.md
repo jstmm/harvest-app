@@ -2,6 +2,16 @@
 
 App to create time entries in bulk on Harvest.
 
+## Installation
+
+```bash
+$ sudo apt install postgresql postgresql-contrib libpq-dev
+$ sudo -u postgres createuser -s harvest_app -P
+> secretpw
+$ gem install pg
+$ bin/setup
+```
+
 ## Roadmap
 
 Features
