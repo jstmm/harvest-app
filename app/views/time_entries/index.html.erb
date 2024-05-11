@@ -1,0 +1,29 @@
+<%= link_to "Return", root_path %>
+
+<section>
+  <h2>Latest Entries</h2>
+  <div class="overflow-auto">
+    <table class="striped">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Nb. of Hours</th>
+          <th scope="col">Client</th>
+          <th scope="col">Project</th>
+          <th scope="col">Task</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @entries.each do |e| %>
+          <tr>
+            <td><%= e["spent_date"] %></td>
+            <td><%= e["hours"] %></td>
+            <td><%= e["client"]["name"] %></td>
+            <td><%= e["project"]["name"] %></td>
+            <td><%= e["task"]["name"] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>

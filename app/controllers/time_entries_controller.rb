@@ -1,4 +1,9 @@
 class TimeEntriesController < ApplicationController
+  def index
+    http_response = HTTParty.get("https://api.harvestapp.com/v2/time_entries", headers: @current_user[:headers])
+    @entries = http_response["time_entries"].take(20)
+  end
+
   def new
     @tebc = TimeEntryBulkCreator.new
     @projects = Projects.new.get(@current_user[:headers])

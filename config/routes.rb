@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#show"
 
-  resources :time_entries, only: [:new, :create]
+  resources :time_entries, only: [:index, :new, :create]
 
   get 'sign_in', action: :new, controller: :sessions
   get 'sign_in_callback', action: :create, controller: :sessions
