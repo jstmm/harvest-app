@@ -11,14 +11,18 @@ class TimeEntriesController < ApplicationController
 
   def create
     @tebc = TimeEntryBulkCreator.new(tebc_params)
-    result = @tebc.send(@current_user)
+    @result = @tebc.send(@current_user)
 
-    if result
-      redirect_to root_path, notice: result
-    else
+    unless @result
       @projects = Projects.new.get(@current_user[:headers])
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    url = "https://api.harvestapp.com/v2/time_entries/%d" % params[:id]
+    response = HTTParty.delete(url, headers: @current_user[:headers])
+    redirect_to time_entries_path
   end
 
   private

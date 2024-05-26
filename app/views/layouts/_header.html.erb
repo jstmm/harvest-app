@@ -1,0 +1,4 @@
+<h1>Harvest App</h1>
+<% if @current_user.present? %>
+  <p>Hi <%= @current_user[:first_name] %> <%= @current_user[:last_name] %>! <%= link_to "(sign out)" , sign_out_path %></p>
+<% end %>

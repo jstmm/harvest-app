@@ -1,11 +1,7 @@
-<%= link_to "Latest time entries", time_entries_path %> |
-<%= link_to "Create time entries", new_time_entry_path %>
+<%= link_to "Latest time entries", time_entries_path, data: { turbo_frame: "main" } %> |
+<%= link_to "Create time entries", new_time_entry_path, data: { turbo_frame: "main" } %>
 
-<% if flash[:notice].present? %>
-  <hr>
+<hr>
 
-  <h3>Entries added:</h3>
-  <% flash[:notice].each do |msg| -%>
-    <%= content_tag :div, msg %>
-  <% end -%>
-<% end -%>
+<%= turbo_frame_tag "main" do %>
+<% end %>

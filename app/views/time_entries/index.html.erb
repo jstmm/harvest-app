@@ -1,29 +1,31 @@
-<%= link_to "Return", root_path %>
-
-<section>
-  <h2>Latest Entries</h2>
-  <div class="overflow-auto">
-    <table class="striped">
-      <thead>
-        <tr>
-          <th scope="col">Date</th>
-          <th scope="col">Nb. of Hours</th>
-          <th scope="col">Client</th>
-          <th scope="col">Project</th>
-          <th scope="col">Task</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @entries.each do |e| %>
+<%= turbo_frame_tag "main" do %>
+  <section>
+    <h2>Latest Entries</h2>
+    <div class="overflow-auto">
+      <table class="striped">
+        <thead>
           <tr>
-            <td><%= e["spent_date"] %></td>
-            <td><%= e["hours"] %></td>
-            <td><%= e["client"]["name"] %></td>
-            <td><%= e["project"]["name"] %></td>
-            <td><%= e["task"]["name"] %></td>
+            <th scope="col">Date</th>
+            <th scope="col">Nb. of Hours</th>
+            <th scope="col">Client</th>
+            <th scope="col">Project</th>
+            <th scope="col">Task</th>
+            <th scope="col">Actions</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-</section>
+        </thead>
+        <tbody>
+          <% @entries.each do |e| %>
+            <tr>
+              <td><%= e["spent_date"] %></td>
+              <td><%= e["hours"] %></td>
+              <td><%= e["client"]["name"] %></td>
+              <td><%= e["project"]["name"] %></td>
+              <td><%= e["task"]["name"] %></td>
+              <td><%= link_to "Delete", time_entry_path(e["id"]), data: { "turbo-method": :delete } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+<% end %>
